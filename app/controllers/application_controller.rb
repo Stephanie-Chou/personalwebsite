@@ -7,5 +7,6 @@ class ApplicationController < ActionController::Base
   end
 
   def blog
+  	@articles = Article.all
   end
 end
