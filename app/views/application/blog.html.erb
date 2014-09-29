@@ -6,6 +6,26 @@
           <h1 class = "playful">Tech Blog <small>Eat, Code, Repeat</small></h1>
           <br/>
         </div>
+
+<%@articles.each do |article|%>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <date><%=article.date%></date>
+      <h3 class="panel-title"><%=article.title%></h3>
+    </div>
+    <div class="panel-body">
+      <p><strong>Problem: </strong><%=article.problem%></p>
+      <%=article.content.html_safe%>
+      <p><strong>Runtime: </strong><%=article.runtime%></p>
+      <p><strong>Language: </strong> <%=article.language%></p>
+<pre class="prettyprint lang-ruby">
+<%=article.code.html_safe%>
+</pre>      
+    </div>
+  </div>
+<%end%>
+
+
 <!-- 
 	<div class="panel panel-primary">
 	  <div class="panel-heading">
@@ -22,14 +42,14 @@
 	  </div>
 	</div>
  -->
-<div class="panel panel-primary">
+<!-- <div class="panel panel-primary">
 	  <div class="panel-heading">
 	  <date>September 28, 2014</date>
 		<h3 class="panel-title">Reverse a Linked List</h3>
 	  </div>
 	  <div class="panel-body">
 	  <p>Our linked list is defined as follows: </p>
-    <p><strong>Language:</strong> Ruby</p>
+    
 <pre class="prettyprint lang-ruby">
 Class Node
   attr_accessor :next, :value
@@ -50,6 +70,7 @@ end
     <p><strong>Runtime:</strong> O(n) where n is the number of nodes in the list</p>
     <p><strong>Language:</strong> Ruby</p>
     <p>This method is a List class method.</p>
+    <p><strong>Language:</strong> Ruby</p>
 <pre class="prettyprint lang-ruby">
 def reverse_list
   prev = nil
@@ -241,9 +262,9 @@ end
     				<a href="http://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/">Beginner's Guide to Big O</a> 
     				<a href="http://bigocheatsheet.com/">Big O Cheat Sheet</a> 
     </div>
-	</div>				
+	</div>				 
 
-	</div>
+	</div>-->
 	</div>
 	</div>
 
