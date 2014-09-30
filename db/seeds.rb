@@ -5,6 +5,18 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+# Article.create(date:"" , title:"" , problem: "", language: "",runtime:"", content:"", code:""
+# 	)
+
+Article.create(date:"September 29, 2014" , title:"Recursive Fibonacci" , problem: "Find the nth fibonacci where the 0th number is 1, the 1st number is 1 and the 2nd number is 2.", language: "Ruby",runtime:"", content:"In a recursive fibonacci sequence, we have two base cases. If n is 1 or if n is 0, we should return 1. Otherwise, we want to add the two previous fibonacci numbers.", code:"def fibonacci(n)
+	
+	if n == 1 || n == 0
+		1
+	else
+		fibonacci(n-1)+fibonacci(n-2)
+	end
+end"
+	)
 
 Article.create(title:"Reverse a Linked List", date: "September 28, 2014", language: "Ruby", runtime:"O(n)", problem:"Reverse a linked list. We are assuming there is only a head pointer, no tail pointer", content: "<p>Our linked list is defined as follows: </p>
     
@@ -159,6 +171,3 @@ Article.create(date:"June 30, 2014" , title:"Big O Notation" , problem: "", lang
     				<a href='http://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/'>Beginner's Guide to Big O</a> 
     				<a href='http://bigocheatsheet.com/'>Big O Cheat Sheet</a> ", code:""
 	)
-
-# Article.create(date:"" , title:"" , problem: "", language: "",runtime:"", content:"", code:""
-# 	)
