@@ -18,4 +18,5 @@
 
 $(function(){
 	prettyPrint();
+	console.log("hello world");
 });
