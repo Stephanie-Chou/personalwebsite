@@ -5,10 +5,92 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
 # Article.create(date:"" , title:"" , problem: "", language: "",runtime:"", content:"", code:""
 # 	)
 
-Article.create(date:"September 29, 2014" , title:"Recursive Fibonacci" , problem: "Find the nth fibonacci where the 0th number is 1, the 1st number is 1 and the 2nd number is 2.", language: "Ruby",runtime:"", content:"In a recursive fibonacci sequence, we have two base cases. If n is 1 or if n is 0, we should return 1. Otherwise, we want to add the two previous fibonacci numbers.", code:"def fibonacci(n)
+Article.create(date:"October 4, 2014" , title:"Iterator for Two Interators" , problem: "Given two iterators make a single iterator to iterate over those two", language: "Javascript",runtime:"O(n)", content:"Given iterators [1,2] and [3,4], create an interator class that can iterate over the two iterators such that when you call next() you will get 1,2,3,4. iterators all have a next()", code:"function BigIterator(iter1, iter2){
+  this.iterators = [iter1, iter2];
+  this.curr = 0;
+}
+
+BigIterator.prototype.next= function() {
+  var dummy = iterators[curr].next();
+  if ( dummy !==null){
+    return dummy;
+  }
+  else{
+    this.curr ++;
+    if (curr<this.iterators.length){
+      return iterators[curr].next();
+    }
+    else{
+      return null;
+    }
+  }
+}"
+  )
+
+Article.create(date:"October 3, 2014" , title:"Generate Case Combinations" , problem: "generate all possible case cominations given a lower case string", language: "Javascript",runtime:"", content:"There should be a wrapper function to call this one.", code:"function generateCaseCombinations(sorted, left){
+  if(left === ""){
+    console.log(sorted);
+  }
+  else{
+    for (var i = 0; i < left.length; i++){
+      upper = sorted+left[i].toUpperCase();
+      lower = sorted+left[i].toLowerCase();
+      remaining = left.substr(0,i)+left.substr(i+1);
+      generateCaseCombinations(remaining, upper);
+      generateCaseCombinations(remaining, lower);
+    }
+  }
+}"
+  )
+
+Article.create(date:"October 2, 2014" , title:"Reverse all the words in sentence" , problem: "Reverse all the words in a sentence", language: "Javascript",runtime:"", content:"Given a string such as 'hello world' return 'olleh dlrow'", code:"function ReverseWords(sentence){
+  arr = sentence.split(' ');
+  return ReverseArray(arr);
+}
+
+function ReverseArray(arr){
+  dummy = [];
+  for (var i = arr.length-1; i >=0; i--){
+    dummy.push(arr[i]);
+  }
+  return dummy;
+}"
+  )
+
+Article.create(date:"October 1, 2014" , title:"Is it a Palindrome?" , problem: "Given a string, return whether it is a palindrome or not", language: "Javascript",runtime:"", content:"", code:"function palindrome(n){
+  var copy = n;
+  var reversed = 0;
+  while (n!==0){
+    reversed = reersed*10 + n%10;
+    n /= 10;
+  }
+  return (copy === reversed);
+}"
+  )
+
+Article.create(date:"September 30, 2014" , title:"Recursive Permutation" , problem: "Find all the possible permutations.", language: "Javascript",runtime:"", content:"I watched a very helpful video by a professor from somewhere. This is a very helpful solution to know because a lot of coding problems are based in being able to find all the possible combinations", code:"function RecPermute(soFar,rest){
+  if(rest === ""){
+    console.log(soFar);
+  }
+  else{
+    for(var i = 0; i < rest.length; i ++){
+      var next = soFar+rest[i];
+      var remaining = rest.substr(0,i)+ rest.substr(i+1);
+      RecPermute(next, remaining);
+    }
+  }
+}
+
+function AllPermutations(s){
+  RecPermute("",s);
+}"
+	)
+Article.create(date:"September 29, 2014" , title:"Recursive Fibonacci" , problem: "Find the nth fibonacci where the 0th number is 1, the 1st number is 1 and the 2nd number is 2.", language: "Ruby",runtime:"", content:"In a recursive fibonacci sequence, we have two base cases. If n is 1 or if n is 0, we should return 1. Otherwise, we want to add the two previous fibonacci numbers.", code:"
+def fibonacci(n)
 	
 	if n == 1 || n == 0
 		1
