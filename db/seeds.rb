@@ -32,7 +32,7 @@ BigIterator.prototype.next= function() {
   )
 
 Article.create(date:"October 3, 2014" , title:"Generate Case Combinations" , problem: "generate all possible case cominations given a lower case string", language: "Javascript",runtime:"", content:"There should be a wrapper function to call this one.", code:"function generateCaseCombinations(sorted, left){
-  if(left === ""){
+  if(left === ''){
     console.log(sorted);
   }
   else{

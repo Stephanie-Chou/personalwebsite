@@ -18,7 +18,7 @@
       <%=article.content.html_safe%>
       <p><strong>Runtime: </strong><%=article.runtime%></p>
       <p><strong>Language: </strong> <%=article.language%></p>
-<pre class="prettyprint lang-ruby">
+<pre class="prettyprint lang-<%=article.language%>">
 <%=article.code.html_safe%>
 </pre>      
     </div>
