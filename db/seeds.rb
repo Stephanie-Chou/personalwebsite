@@ -21,7 +21,7 @@ BigIterator.prototype.next= function() {
   }
   else{
     this.curr ++;
-    if (curr<this.iterators.length){
+    if (curr&lt;this.iterators.length){
       return iterators[curr].next();
     }
     else{
@@ -36,7 +36,7 @@ Article.create(date:"October 3, 2014" , title:"Generate Case Combinations" , pro
     console.log(sorted);
   }
   else{
-    for (var i = 0; i < left.length; i++){
+    for (var i = 0; i &lt; left.length; i++){
       upper = sorted+left[i].toUpperCase();
       lower = sorted+left[i].toLowerCase();
       remaining = left.substr(0,i)+left.substr(i+1);
@@ -65,7 +65,7 @@ Article.create(date:"October 1, 2014" , title:"Is it a Palindrome?" , problem: "
   var copy = n;
   var reversed = 0;
   while (n!==0){
-    reversed = reersed*10 + n%10;
+    reversed = reversed*10 + n%10;
     n /= 10;
   }
   return (copy === reversed);
@@ -77,7 +77,7 @@ Article.create(date:"September 30, 2014" , title:"Recursive Permutation" , probl
     console.log(soFar);
   }
   else{
-    for(var i = 0; i < rest.length; i ++){
+    for(var i = 0; i &lt; rest.length; i ++){
       var next = soFar+rest[i];
       var remaining = rest.substr(0,i)+ rest.substr(i+1);
       RecPermute(next, remaining);
