@@ -17,6 +17,7 @@
 
 	html, body{
 		height: 100%;
+		padding-top: 20px;
 	}
 
 	#landing{
@@ -36,7 +37,7 @@
 		font-family: 'Rock Salt', cursive;
 	}
 	.vertical-center{
-		margin-top: 10%;
+		margin-top: 20%;
 	}
 	.block{
 		min-height: 80%;
@@ -68,4 +69,9 @@
 
 	.white{
 		color:white;
+	}
+
+	.photo{
+		height:50%;
+		width:50%;
 	}
