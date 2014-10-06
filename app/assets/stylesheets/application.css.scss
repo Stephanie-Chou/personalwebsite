@@ -25,14 +25,30 @@
 		min-height: 80%;
 		padding: 20px;
 	}
+	.navbar-default{
+		margin-bottom:0px;
+		background-color:black;
+		border-color:black;
+	}
+	.navbar-default .navbar-nav > li > a{
+		color: white;
+	}
+	i:hover{
+		color: #333333;
+	}
 	#links{
 		background-color: white;
 	}
-	#about{
+	#landing{
+		background-image: url("images/Optimized-ystone-1593.jpg");
+		background-position: center;
+		height:100%;
+		background-size: cover;
+		background-repeat: no-repeat;
 		background-color: white;
 	}
 	#portfolio{
-		background-color: ghostwhite;
+		background-color: white;
 	}
 
 	.media img{
@@ -44,6 +60,8 @@
 		float: right;
 		
 	}
-	.photo{
-		margin-bottom: 20px;
+
+
+	.white{
+		color:white;
 	}
