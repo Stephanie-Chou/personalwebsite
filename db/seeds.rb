@@ -9,6 +9,76 @@
 # Article.create(date:"" , title:"" , problem: "", language: "",runtime:"", content:"", code:""
 # 	)
 
+Article.create(date:"October 6, 2014" , title:"Find the Least Common Ancestor" , problem: "Given two values, find their least common ancestor in a binary search tree.", language: "Ruby",runtime:"", content:"This builds upon the code from the binary search tree. A least common ancestor (LCA) is one where one value is in its right child and the other is in its left child. This solution assumes all values in the tree are unique and that the values exist.", code:"
+def LCA(node, val1, val2)
+  
+  left = exists?(node.left, val1, val2)
+  right = exists?(node.right, val1, val2)
+
+  if left == true && right == true
+    return node
+  elsif left == true
+    LCA(node.left, val1, val2)
+  else
+    LCA(node.right, val1, val2)
+  end
+end
+
+def exists?(node, val1, val2)
+
+  if node == nil
+    return
+  elsif node.value == val1 || node.value == val2
+    return true
+  else
+    return true if exists?(node.left, val1, val2) == true
+    return true if exists?(node.right, val1, val2) == true
+  end
+
+  return false
+
+end")
+
+Article.create(date:"October 5, 2014" , title:"Data Structure: Binary Search Tree" , problem: "Create the Binary search tree data structure in Ruby", language: " Ruby",runtime:"insert- O(logn)", content:"Binary Search Trees (BST)consist of nodes. It must have at least 1 node, the root. Each node in a binary search tree has two children. We call these left child and right child. Each node also has an integer value. In a BST, the left child value is less than the current node value and the right child valu is greater than the current node value.", code:"
+class Node
+  attr_accessor :left, :right, :value
+  def initialize(value)
+    @left = nil
+    @right = nil
+    @value = value
+  end
+end
+
+class Tree
+  attr_reader :root
+  def initialize(node)
+    @root = node
+  end
+
+  def insert(value)
+    insertAt(@root, value)
+  end
+
+  def insertAt(node, value)
+    if value > node.value
+      if node.right == nil
+        node.right = Node.new(value)
+      else
+        insertAt(node.right, value)
+      end
+    else
+      if node.left == nil
+        node.left = Node.new(value)
+      else
+        insertAt(node.left, value)
+      end
+    end
+  end
+end
+"
+  )
+
+
 Article.create(date:"October 4, 2014" , title:"Iterator for Two Interators" , problem: "Given two iterators make a single iterator to iterate over those two", language: "Javascript",runtime:"O(n)", content:"Given iterators [1,2] and [3,4], create an interator class that can iterate over the two iterators such that when you call next() you will get 1,2,3,4. iterators all have a next()", code:"function BigIterator(iter1, iter2){
   this.iterators = [iter1, iter2];
   this.curr = 0;
