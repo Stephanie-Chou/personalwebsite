@@ -9,6 +9,17 @@
 # Article.create(date:"" , title:"" , problem: "", language: "",runtime:"", content:"", code:""
 # 	)
 
+Article.create(date:"October 6, 2014" , title:"Technical Questions" , problem: "Here is a series of technical but non-coding questions that I will be running through for the next few posts", language: "N/A",runtime:"N/A", content:"
+  <ol>
+    <li>What happens when you type into the browser search bar?</li>
+    <li>Talk about indexing tables in a database. What are indices and when do you use them?</li>
+    <li>What is the difference between Javascript and Ruby?</li>
+    <li>Design a Chat App</li>
+    <li>What is normalization? (we are talking about databases) </li>
+  </ol>
+  ", code:""
+  )
+
 Article.create(date:"October 6, 2014" , title:"Find the Least Common Ancestor" , problem: "Given two values, find their least common ancestor in a binary search tree.", language: "Ruby",runtime:"", content:"This builds upon the code from the binary search tree. A least common ancestor (LCA) is one where one value is in its right child and the other is in its left child. This solution assumes all values in the tree are unique and that the values exist.", code:"
 def LCA(node, val1, val2)
   
