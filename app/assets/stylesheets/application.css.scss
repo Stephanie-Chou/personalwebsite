@@ -18,29 +18,9 @@
 	html, body{
 		height: 100%;
 	}
-	.playful{
-		font-family: 'Rock Salt', cursive;
-	}
-	.block{
-		min-height: 80%;
-		padding: 20px;
-	}
-	.navbar-default{
-		margin-bottom:0px;
-		background-color:black;
-		border-color:black;
-	}
-	.navbar-default .navbar-nav > li > a{
-		color: white;
-	}
-	i:hover{
-		color: #333333;
-	}
-	#links{
-		background-color: white;
-	}
+
 	#landing{
-		background-image: url("images/Optimized-ystone-1593.jpg");
+		background-image: url("images/lakestorm.png");
 		background-position: center;
 		height:100%;
 		background-size: cover;
@@ -50,6 +30,30 @@
 	#portfolio{
 		background-color: white;
 	}
+
+
+	.playful{
+		font-family: 'Rock Salt', cursive;
+	}
+	.vertical-center{
+		margin-top: 10%;
+	}
+	.block{
+		min-height: 80%;
+		padding: 20px;
+	}
+	.navbar-default{
+		margin-bottom:0px;
+
+	}
+
+	i:hover{
+		color: #333333;
+	}
+	#links{
+		background-color: white;
+	}
+
 
 	.media img{
 		width:auto;
