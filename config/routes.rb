@@ -8,6 +8,11 @@ Rails.application.routes.draw do
 
   get 'about' =>'application#about'
 
+  get 'admin' => 'admin/dashboard#index'
+  get 'login' => 'admin/dashboard#login'
+  get 'logout' => 'admin/dashboard#logout'
+
+  resources :posts
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -9,6 +9,7 @@
 # Article.create(date:"" , title:"" , problem: "", language: "",runtime:"", content:"", code:""
 # 	)
 
+
 Article.create(date:"October 6, 2014" , title:"Technical Questions" , problem: "Here is a series of technical but non-coding questions that I will be running through for the next few posts", language: "N/A",runtime:"N/A", content:"
   <ol>
     <li>What happens when you type into the browser search bar?</li>

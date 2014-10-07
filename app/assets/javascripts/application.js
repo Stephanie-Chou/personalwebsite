@@ -19,4 +19,10 @@
 $(function(){
 	prettyPrint();
 	console.log("hello world");
+
+	// $(".edit").click(function(){
+		
+	// 	request = $.post("/posts/"+this.parentElement.id+"/edit");
+	// 	request.done
+	// })
 });
