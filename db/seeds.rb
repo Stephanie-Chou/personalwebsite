@@ -9,12 +9,6 @@
 # Article.create(date:"" , title:"" , problem: "", language: "",runtime:"", content:"", code:""
 # 	)
 
-Article.create(date:"October , 2014" , title:"" , problem: "", language: "Javascript",runtime:"", content:"", code:""
-  )
-
-Article.create(date:"October , 2014" , title:"" , problem: "", language: "Javascript",runtime:"", content:"", code:""
-  )
-
 Article.create(date:"October 16, 2014" , title:"Encode a number string to alphabet" , problem: "Given a dictionary where a =>1, b=> 2 ... z=> 26 and given a string such as '112', determine how many ways that string could be encoded as letters", language: "Javascript",runtime:"O(n)", content:"There are two cases to consider: letters that decode in the range of 1-9 (single digits!) and letters that decode in the range of 10-26 (2 digits!). Note that there is also the case of 0. In this problem, 0 does not decode to any letter. \n We have O(n) time because we are storing strings that we have checked before with their count. This way, we don't have to redo the recursive calls on any string segments. Instead we have an O(1) lookup. For example the string '1120' could decode to '1 1 20' or '11 20'. But it is repetative to call encode on 20 twice. We should only have to call encode on 20 once to know that there is only 1 possible encoding.", code:"function encode(checked, s, dict, count){
 
   if (s.length &lt; 2){
