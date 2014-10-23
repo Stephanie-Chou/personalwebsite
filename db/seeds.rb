@@ -9,6 +9,138 @@
 # Article.create(date:"" , title:"" , problem: "", language: "",runtime:"", content:"", code:""
 # 	)
 
+Article.create(date:"October , 2014" , title:"" , problem: "", language: "Javascript",runtime:"", content:"", code:""
+  )
+
+Article.create(date:"October , 2014" , title:"" , problem: "", language: "Javascript",runtime:"", content:"", code:""
+  )
+
+Article.create(date:"October 16, 2014" , title:"Encode a number string to alphabet" , problem: "Given a dictionary where a =>1, b=> 2 ... z=> 26 and given a string such as '112', determine how many ways that string could be encoded as letters", language: "Javascript",runtime:"O(n)", content:"There are two cases to consider: letters that decode in the range of 1-9 (single digits!) and letters that decode in the range of 10-26 (2 digits!). Note that there is also the case of 0. In this problem, 0 does not decode to any letter. \n We have O(n) time because we are storing strings that we have checked before with their count. This way, we don't have to redo the recursive calls on any string segments. Instead we have an O(1) lookup. For example the string '1120' could decode to '1 1 20' or '11 20'. But it is repetative to call encode on 20 twice. We should only have to call encode on 20 once to know that there is only 1 possible encoding.", code:"function encode(checked, s, dict, count){
+
+  if (s.length &lt; 2){
+    return 1;
+  }
+
+  if((s.substr(0, 2) in dict) && (s.length > 2)){
+    if (s.substr(2) in checked){
+      count += checked[s.substr(2)];
+    }else{
+      count += encode(checked, s.substr(2), dict, count);
+      checked[s.substr(2)] = count;
+    }
+  }
+  if(s[1]!=='0'){
+    if (s.substr(1) in checked){
+      count += checked[s.substr(1)];
+    }else{
+      count += encode(checked, s.substr(1), dict, count);
+      checked[s.substr(1)] = count;
+    }
+  }
+  return count;
+}
+"
+  )
+
+Article.create(date:"October 13, 2014" , title:"Word Ladder" , problem: "Given two words (a starting and ending word) and a dictionary, count how many single letter changes you would need to make to go from the start word to the end word", language: "Javascript",runtime:"", content:"Keep track of the edit distance of each new word. For each new edited word, push it on to the word queue and store its edit distance. Pop words off of the queue, check if they are the end word. If not, edit them!", code:"function wordLadder(start,end, dict){
+  var dist = {};
+  var q = new Queue();
+  var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+  q.push(start);
+  dist[start] = 0;
+
+  while(!q.empty){
+    word = q.peek();
+    q.pop();
+    if (word === end){
+      return dist[word];
+    }
+
+    for (var i = 0; i &lt; word.length; i++){
+      for(var letter = 0; letter<alphabet.length; letter++ ){
+        newWord = word.split('');
+        newWord[i] = alphabet[letter];
+        newWord = newWord.join('');
+        // if we haven't seen the word before and if the word exists in the dictionary
+        if(!(newWord in dist) && (newWord in dict)){
+          q.push(newWord);
+          dist[newWord] = dist[word]+1;
+        }
+      }
+    }
+  }
+
+  return -1
+}"
+  )
+
+Article.create(date:"October 12, 2014" , title:"Wordbreak" , problem: "Given a string and a dictionary, check if that string can be broken into words contained in the dictionary. Example: given 'ilikefood' and a dictionary containing the words 'i', 'like', and 'food', return true ", language: "Javascript",runtime:"O(n) ? ", content:" This is a recursive solution. for each new letter we add, we may need to call one more recursive call.", code:"function Wordbreak(str, dict){
+  
+  if( str in dict){
+    return true;
+  }
+  
+  for(var i = 0; i &lt; str.length; i++){
+    var prefix = str.substr(0, i+1);
+    console.log(prefix);
+    if (!(prefix in dict)){
+      // if the prefix doesn't exist, then we need to keep adding letters until we find a prefix.
+      continue;
+    }
+    var remaining = str.substr(i+1);
+    if (Wordbreak(remaining, dict)){
+      return true;
+    }
+  }
+
+  return false;
+
+}
+"
+  )
+
+Article.create(date:"October 10, 2014" , title:"Regex" , problem: "Implement Regex with '*' and '.' " , language: "Javascript",runtime:"", content:" Read the comments", code:"
+  function isMatch(s, p){
+
+  if(p ===''){
+    return true;
+  }
+
+  // contains *
+  // search the through whole string for potential matches via recursion
+
+  // if there are none, thats ok! because * means any or none. so do a recursive call to look for the rest of the pattern in the string
+  if (p[1] == '*'){
+    for (var i = 0; i &lt; s.length && (p[0]==='.' || p[0]===s[0]); i++){
+      if (isMatch(s.substr(i+1), p.substr(2))){
+        return true;
+      }
+    }
+    return isMatch(s, p.substr(2));
+
+  }
+
+  // if string is not empty and if character match... then we need to match up the rest of the string! so make a recursive call
+
+  if (s!=='' && (p[0]==='.' || p[0]===s[0])){
+    return isMatch(s.substr(1), p.substr(1));
+  }else{
+    return false;
+  }
+}
+
+function regex(s,p){
+  for (var j = 0; j&lt;s.length; j++){
+    if (isMatch(s.substr(j),p)){
+      return true;
+    }
+  }
+  return false;
+}"
+  )
+
+
+
 
 Article.create(date:"October 6, 2014" , title:"Technical Questions" , problem: "Here is a series of technical but non-coding questions that I will be running through for the next few posts", language: "N/A",runtime:"N/A", content:"
   <ol>
