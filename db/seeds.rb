@@ -1,15 +1,83 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 # Article.create(date:"" , title:"" , problem: "", language: "",runtime:"", content:"", code:""
 # 	)
 
+#< &lt;
+
 Article.delete_all
+
+Article.create(date:"October 25, 2014" , title:"Making Change" , problem: "Given a total and an array of denominations, count the number of ways to make change for the total.", language: "Ruby",runtime:"", content:"For each denominations, you can use it 0 to x times, where x is the how many times you can use it before you overshoot the total. Use that logic recursively to update the total and the denominations left to use.", code:"
+def change(total, denominations)
+  return 1 if total == 0 
+
+  return 0 if total &lt; 0
+
+  return 0 if denominations.length == 0
+  # choose next coin
+  current_coin = denominations.first
+
+  # we can use it as many times as it takes to overshoot the total.
+  count = 0
+  while total >=0     
+    count += change(total, denominations[1..-1])
+    total -= current_coin
+  end
+  return count
+end"
+  )
+
+Article.create(date:"October 23, 2014" , title:"Validate Parentheses" , problem: "Given a string, determine if the parentheses are valid", language: "Ruby",runtime:"O(n)", content:"Examples: )( => false, () => true and ()) => false", code:"
+  def valid?(str)
+  stack = []
+  parens = {
+    '(' => ['open', ')'],
+    ')' => ['close', '(']
+  }
+  i= 0
+  while i != str.length
+    if parens.has_key?(str[i])
+      if parens[str[i]][0] == 'close'
+        if stack.last == parens[str[i]][1]
+          stack.pop()
+        else
+          return false
+        end
+      else
+        stack &lt;&lt; str[i]
+      end
+    end
+
+    i+=1
+  end
+
+  return stack.empty?
+end"
+  )
+
+Article.create(date:"October 22, 2014" , title:"Memoized Fibonacci" , problem: "Increase the running time of the recursive Fibonacci Solution", language: "Ruby",runtime:"O(n)", content:"I benchmarked both the classic fibonacci and the memoized fibonacci. Classic fibonacci(30) runs in 0.257136 seconds. fibonacciMemoized(30) runs in 5.4e-05 seconds. Memoized fibonacci takes advantage of the fact that fibonacci makes 2 recursive calls. The second recurive call recalculates all of the same values as the first call. Therefore, if we store all the calculated fibonacci numbers during the first call, any further calls can simply use the stored values. We use a hash to store calculated numbers.", code:"
+require 'benchmark'
+
+
+# Classic Recursive
+def fibonacci(n)
+  return n if n<2
+  return fibonacci(n-1)+fibonacci(n-2)
+end
+
+p Benchmark.measure {fibonacci(20)}
+
+# Memoized
+def fibonacciMemoized(n, calculated)
+  return n if n &lt; 2
+  return calculated[n] if calculated.has_key?(n)
+  calculated [n] = fibonacciMemoized(n-1, calculated)+fibonacciMemoized(n-2, calculated)
+end
+
+
+
+p Benchmark.measure {p fibonacciMemoized(20,{})}
+"
+  )
+
 
 Article.create(date:"October 16, 2014" , title:"Encode a number string to alphabet" , problem: "Given a dictionary where a =>1, b=> 2 ... z=> 26 and given a string such as '112', determine how many ways that string could be encoded as letters", language: "Javascript",runtime:"O(n)", content:"There are two cases to consider: letters that decode in the range of 1-9 (single digits!) and letters that decode in the range of 10-26 (2 digits!). Note that there is also the case of 0. In this problem, 0 does not decode to any letter. \n We have O(n) time because we are storing strings that we have checked before with their count. This way, we don't have to redo the recursive calls on any string segments. Instead we have an O(1) lookup. For example the string '1120' could decode to '1 1 20' or '11 20'. But it is repetative to call encode on 20 twice. We should only have to call encode on 20 once to know that there is only 1 possible encoding.", code:"function encode(checked, s, dict, count){
 
@@ -53,7 +121,7 @@ Article.create(date:"October 13, 2014" , title:"Word Ladder" , problem: "Given t
     }
 
     for (var i = 0; i &lt; word.length; i++){
-      for(var letter = 0; letter<alphabet.length; letter++ ){
+      for(var letter = 0; letter &lt; alphabet.length; letter++ ){
         newWord = word.split('');
         newWord[i] = alphabet[letter];
         newWord = newWord.join('');
@@ -126,7 +194,7 @@ Article.create(date:"October 10, 2014" , title:"Regex" , problem: "Implement Reg
 }
 
 function regex(s,p){
-  for (var j = 0; j&lt;s.length; j++){
+  for (var j = 0; j&lt; s.length; j++){
     if (isMatch(s.substr(j),p)){
       return true;
     }
