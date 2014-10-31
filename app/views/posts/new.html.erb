@@ -1,24 +1,32 @@
-<form accept-charset="UTF-8" action="/create" method="post">
-  <div class="form-group">
-    <textarea class="form-control" id="date" name="date" type="text" placeholder="Date"></textarea>
+<div class= "row row col-sm-6 col-sm-offset-3">
+  <div class= "block">
+    <h1 class = "playful"> New Post </h1>
+    <form accept-charset="UTF-8" action="/posts" method="post">
+      <div class="form-group">
+        <textarea class="form-control" id="date" name="post[date]" type="text" placeholder="Date"></textarea>
+      </div>
+      <div class="form-group">
+        <textarea class="form-control" id="title" name="post[title]" type="text" placeholder = "title"></textarea>
+      </div>
+      <div class="form-group">
+        <textarea class="form-control" id="problem" name="post[problem]" type="text" placeholder = "problem"></textarea>
+      </div>
+      <div class="form-group">
+        <textarea class="form-control" id="language" name="post[language]" type="text" placeholder = "language"></textarea>
+      </div>
+      <div class="form-group">
+        <textarea class="form-control" id="runtime" name="post[runtime]" type="text" placeholder = "runtime"></textarea>
+      </div>
+      <div class="form-group">
+        <textarea class="form-control" id="content" name="post[content]" type="text" placeholder = "content" rows = "10"></textarea>
+      </div>
+      <div class="form-group">
+        <textarea class="form-control" id="code" name="post[code]" type="text" placeholder = "code" rows = "20"></textarea>
+      </div>
+      <div class = "form-group">
+        <textarea class = "form-control" id = "tags" name= "tags" type = "text" placeholder = "Tags delimited by commas" rows = "20"></textarea>
+      </div>
+      <input class="btn btn-default" name="commit" type="submit" value="Post">
+    </form>
   </div>
-  <div class="form-group">
-    <textarea class="form-control" id="title" name="title" type="text" placeholder = "title"></textarea>
-  </div>
-  <div class="form-group">
-    <textarea class="form-control" id="problem" name="problem" type="text" placeholder = "problem"></textarea>
-  </div>
-  <div class="form-group">
-    <textarea class="form-control" id="language" name="language" type="text" placeholder = "language"></textarea>
-  </div>
-  <div class="form-group">
-    <textarea class="form-control" id="runtime" name="runtime" type="text" placeholder = "runtime"></textarea>
-  </div>
-  <div class="form-group">
-    <textarea class="form-control" id="content" name="content" type="text" placeholder = "content" rows = "10"></textarea>
-  </div>
-  <div class="form-group">
-    <textarea class="form-control" id="code" name="code" type="text" placeholder = "code" rows = "20"></textarea>
-  </div>
-  <input class="btn btn-default" name="commit" type="submit" value="Log In">
-</form>
+</div>

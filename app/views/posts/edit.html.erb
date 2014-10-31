@@ -24,6 +24,9 @@
       <div class="form-group">
         <textarea class="form-control" id="code" name="post[code]" type="text" rows = "20" placeholder = "code"><%=@article.code%></textarea>
       </div>
+      <div class = "form-group">
+        <textarea class = "form-control" id = "tags" name= "tags" type = "text" placeholder = "Tags delimited by commas" rows = "20"><%= @tags %></textarea>
+      </div>
       <input class="btn btn-default" name="commit" type="submit" value="edit">
     </form>
   </div>

@@ -1,13 +1,15 @@
 <div class="container-fluid block">
 	<div class = "row">
-  
-	  <div class= "col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">	
+
+	  <div class= "col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
 	  		<div class="page-header">
           <h1 class = "playful">Tech Blog <small>Eat, Code, Repeat</small></h1>
           <br/>
         </div>
-
-        <%@articles.each do |article|%>
+        <%if signed_in?%>
+          <button class="btn btn-default edit" name = "new"><%= link_to "New Post", new_post_path%>
+        <%end%>
+        <%@articles.each do |article|%></button>
           <div class="panel panel-primary" id=<%=article.id%>>
             <div class="panel-heading">
               <date><%=article.date%></date>
@@ -20,17 +22,19 @@
               <p><strong>Language: </strong> <%=article.language%></p>
 <pre class="prettyprint lang-<%=article.language%>">
 <%=article.code.html_safe%>
-</pre>      
-
+</pre>
+              <%article.tags.each do |tag|%>
+                  <button class="btn btn-info btn-sm"> <%= link_to tag.name, blog_path(:tag => tag.id)%> </button>
+                <%end%>
+                <%if signed_in?%>
+                  <button class="btn btn-default edit" name = "edit"><%= link_to "Edit", edit_post_path(:id => article.id) %></button>
+              <%end%>
             </div>
-            <%if signed_in?%>
-              <button class="btn btn-default edit" name = "edit"><%= link_to "Edit", edit_post_path(:id => article.id) %></button>
-            <%end%>
           </div>
         <%end%>
 
 
-<!-- 
+<!--
 	<div class="panel panel-primary">
 	  <div class="panel-heading">
 	  <date></date>
@@ -42,7 +46,7 @@
     <p><strong>Language:</strong> Ruby</p>
 <pre class="prettyprint lang-ruby">
 
-</pre>			
+</pre>
 	  </div>
 	</div>
  -->
