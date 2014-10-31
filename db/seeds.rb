@@ -5,9 +5,57 @@
 
 Article.delete_all
 
+Article.create(date:"October 28, 2014" , title:"Selling Stocks" , problem: "Given an array of stock prices over a period of time, what is the max profit you could have? Assume you can only buy and sell once.", language: "Ruby",runtime:"O(n)", content:"Remember, you can't go back in time and sell the stock before your bought it! We keep track of the latest minimum prices and the current reigning max profit.", code:"
+  def profit(prices)
+  i = 0
+  max_profit = 0
+  min = prices[i]
+
+  buy_price = 0
+  sell_price = 0
+  while i &lt; prices.length
+    curr = prices[i]
+    # p curr-min
+    if curr-min > max_profit
+      max_profit = curr-min
+      buy_price = min
+      sell_price = curr
+    end
+    min = curr if curr &lt; min
+    i +=1
+  end
+  return max_profit
+end
+
+# generate an array of random prices
+prices = Array.new(30) { rand(100) }
+profit(prices)")
+
+Article.create(date:"October 27, 2014" , title:"Adding Indices to Database Tables" , problem: "When are indices in a table used? When and Why should you add indices to a table?", language: "none",runtime:"N/A", content:"
+  Indices are used for quick lookups in a database. In relational databases, all rows in a table automatically have an index. This is a unique ID that can be queried to find that particular row. If there is no index for a query, then the search performs a table scan. This means it looks through all the rows.\n
+  When you add an index to a table, that index entry contains a copy of . These indices are not necessarily unique.
+Sources: http://odetocode.com/articles/70.aspx
+  ", code:""
+  )
+
+Article.create(date:"October 27, 2014" , title:"URLs in the Browser" , problem: "What happens when you type a URL in the search bar?", language: "none",runtime:"N/A", content:"
+  <ol>
+    <li>Type the URL into your Browser</li>
+    <li>DNS lookup for the correct IP address. Looks for the stored URL in your browser cache first, then looks recursively through the server.</li>
+    <li>Browser sends HTTP Get request to Web Server</li>
+    <li>Server sends back 301, permanent redirect</li>
+    <li>Browser follows redirect</li>
+    <li>Server sends down HTML</li>
+    <li>Browser begins rendering. Sends requests for objects embedded in the HTML such as stylesheets and javascript</li>
+    <li>Browser sends AJAX requests</li>
+  </ol>
+  Resources: http://igoro.com/archive/what-really-happens-when-you-navigate-to-a-url/", code:""
+  )
+
+
 Article.create(date:"October 25, 2014" , title:"Making Change" , problem: "Given a total and an array of denominations, count the number of ways to make change for the total.", language: "Ruby",runtime:"", content:"For each denominations, you can use it 0 to x times, where x is the how many times you can use it before you overshoot the total. Use that logic recursively to update the total and the denominations left to use.", code:"
 def change(total, denominations)
-  return 1 if total == 0 
+  return 1 if total == 0
 
   return 0 if total &lt; 0
 
@@ -17,7 +65,7 @@ def change(total, denominations)
 
   # we can use it as many times as it takes to overshoot the total.
   count = 0
-  while total >=0     
+  while total >=0
     count += change(total, denominations[1..-1])
     total -= current_coin
   end
@@ -139,11 +187,11 @@ Article.create(date:"October 13, 2014" , title:"Word Ladder" , problem: "Given t
   )
 
 Article.create(date:"October 12, 2014" , title:"Wordbreak" , problem: "Given a string and a dictionary, check if that string can be broken into words contained in the dictionary. Example: given 'ilikefood' and a dictionary containing the words 'i', 'like', and 'food', return true ", language: "Javascript",runtime:"O(n) ? ", content:" This is a recursive solution. for each new letter we add, we may need to call one more recursive call.", code:"function Wordbreak(str, dict){
-  
+
   if( str in dict){
     return true;
   }
-  
+
   for(var i = 0; i &lt; str.length; i++){
     var prefix = str.substr(0, i+1);
     console.log(prefix);
@@ -219,7 +267,7 @@ Article.create(date:"October 6, 2014" , title:"Technical Questions" , problem: "
 
 Article.create(date:"October 6, 2014" , title:"Find the Least Common Ancestor" , problem: "Given two values, find their least common ancestor in a binary search tree.", language: "Ruby",runtime:"", content:"This builds upon the code from the binary search tree. A least common ancestor (LCA) is one where one value is in its right child and the other is in its left child. This solution assumes all values in the tree are unique and that the values exist.", code:"
 def LCA(node, val1, val2)
-  
+
   left = exists?(node.left, val1, val2)
   right = exists?(node.right, val1, val2)
 
@@ -369,7 +417,7 @@ function AllPermutations(s){
 	)
 Article.create(date:"September 29, 2014" , title:"Recursive Fibonacci" , problem: "Find the nth fibonacci where the 0th number is 1, the 1st number is 1 and the 2nd number is 2.", language: "Ruby",runtime:"", content:"In a recursive fibonacci sequence, we have two base cases. If n is 1 or if n is 0, we should return 1. Otherwise, we want to add the two previous fibonacci numbers.", code:"
 def fibonacci(n)
-	
+
 	if n == 1 || n == 0
 		1
 	else
@@ -379,7 +427,7 @@ end"
 	)
 
 Article.create(title:"Reverse a Linked List", date: "September 28, 2014", language: "Ruby", runtime:"O(n)", problem:"Reverse a linked list. We are assuming there is only a head pointer, no tail pointer", content: "<p>Our linked list is defined as follows: </p>
-    
+
 <pre class='prettyprint lang-ruby'>
 Class Node
   attr_accessor :next, :value
@@ -402,16 +450,16 @@ code: "def reverse_list
   reversed_head = nil
   while curr.next != nil
     next = curr.next
-    
-    if curr.next == nil 
+
+    if curr.next == nil
       # we are at the end of the list
       reversed_head = curr
     end
-    
+
     prev = curr
     curr.next = prev
     curr = next
-      
+
   end
   reversed_head
 end"
@@ -502,23 +550,23 @@ Article.create(date:"June 30, 2014" , title:"Big O Notation" , problem: "", lang
     				<table style='width:300px'>
     					<tr>
     						<th>Data Structure</th>
-    						<th> Index</th> 
+    						<th> Index</th>
     						<th> Search</th>
     						<th> Insert</th>
     						<th> Delete</th>
     					</tr>
     					<tr>
             				<td>Array</td>
-            				<td>O(1)</td>		
+            				<td>O(1)</td>
             				<td>O(n)</td>
             				<td>--</td>
                     <td></td>
     					</tr>
     					<tr>
-        					<td>Hash</td>		
+        					<td>Hash</td>
         					<td>--</td>
-        					<td>O(n)</td> 
-        					<td>O(n)</td> 
+        					<td>O(n)</td>
+        					<td>O(n)</td>
                   <td>O(n)</td>
     					</tr>
     				</table>
@@ -528,6 +576,6 @@ Article.create(date:"June 30, 2014" , title:"Big O Notation" , problem: "", lang
     				<h4> Job Hunting: The Big O Questions</h4>
     				<p> Recruiters often want to know if you know Big O notation and will ask you to give them the runtime of code you write. Or they will ask you how you could make the code run faster. So it is a good idea to commit the concept of Big O and the more common Big O notations to memory</p>
     				<p> References</p>
-    				<a href='http://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/'>Beginner's Guide to Big O</a> 
+    				<a href='http://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/'>Beginner's Guide to Big O</a>
     				<a href='http://bigocheatsheet.com/'>Big O Cheat Sheet</a> ", code:""
 	)
