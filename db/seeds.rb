@@ -3,7 +3,7 @@
 
 #< &lt;
 
-User.create(name: "Stephanie Chou", email: "stephanie.chou@outlook.com", password: "Sc04174685!")
+
 Article.delete_all
 
 Article.create(date:"October 28, 2014" , title:"Selling Stocks" , problem: "Given an array of stock prices over a period of time, what is the max profit you could have? Assume you can only buy and sell once.", language: "Ruby",runtime:"O(n)", content:"Remember, you can't go back in time and sell the stock before your bought it! We keep track of the latest minimum prices and the current reigning max profit.", code:"
