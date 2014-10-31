@@ -8,7 +8,13 @@ class ApplicationController < ActionController::Base
   end
 
   def blog
-  	@articles = Article.all
+    p "*"*100
+    if params[:tag].nil?
+    	@articles = Article.order('created_at')
+    else
+      p params[:tag]
+      @articles = Tag.find(params[:tag]).articles.order('created_at')
+    end
   end
 
   def about
