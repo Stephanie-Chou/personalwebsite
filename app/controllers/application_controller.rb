@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   def blog
     p "*"*100
     if params[:tag].nil?
-    	@articles = Article.order('created_at')
+    	@articles = Article.order('created_at').reverse
     else
       p params[:tag]
       @articles = Tag.find(params[:tag]).articles.order('created_at')
