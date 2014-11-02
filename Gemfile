@@ -39,6 +39,11 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'pry', '~>0.10.1'
 gem 'pry-nav'
+
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0'
+end
 # Use unicorn as the app server
 # gem 'unicorn'
 
