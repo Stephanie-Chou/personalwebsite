@@ -2,7 +2,6 @@ require 'pry'
 class PostsController < ApplicationController
 	skip_before_filter  :verify_authenticity_token
 	def show
-		p "*"*100
 		@articles = Article.order('created_at')
 	end
 
@@ -11,7 +10,6 @@ class PostsController < ApplicationController
 	end
 
 	def create
-		p "*"*100
 		@article = Article.create(post_params)
 		@article.tag(params[:tags])
 		redirect_to blog_path
@@ -23,7 +21,6 @@ class PostsController < ApplicationController
 	end
 
 	def update
-		p params
 		@article = Article.find(params[:id])
 		@article.update(post_params)
 		@article.save

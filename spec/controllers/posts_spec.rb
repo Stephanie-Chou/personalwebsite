@@ -21,6 +21,19 @@ RSpec.describe PostsController, :type => :controller do
 
   describe "POST #create" do
     it "creates an article" do
+      article_attributes = FactoryGirl.attributes_for(:article)
+      tag_attributes = FactoryGirl.attributes_for(:tag)
+      post :create, {post: article_attributes, tags: "test"}
+      response.should redirect_to(blog_path)
+      Article.last.content.should == article_attributes[:content]
+    end
+
+    it "creates the associated tags" do
+      article_attributes = FactoryGirl.attributes_for(:article)
+      tag_attributes = FactoryGirl.attributes_for(:tag)
+      post :create, {post: article_attributes, tags: "test"}
+      response.should redirect_to(blog_path)
+      Tag.last.name.should == tag_attributes[:name]
     end
   end
 
@@ -48,4 +61,6 @@ RSpec.describe PostsController, :type => :controller do
       expect(assigns(:tags)).to eq(tag.name)
     end
   end
+
+
 end
