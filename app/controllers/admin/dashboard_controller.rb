@@ -1,5 +1,4 @@
 class Admin::DashboardController < ApplicationController
-include SessionHelper
   #Get form for new user
   def new
     @user = User.new
@@ -22,14 +21,14 @@ include SessionHelper
 
   def login
   	@user = User.find_by_email(params[:user][:email])
-    
+
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
       p session[:user_id]
 			redirect_to root_path
     else
       redirect_to admin_path
-    end  
+    end
   end
 
 

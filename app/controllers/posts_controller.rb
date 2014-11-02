@@ -1,8 +1,9 @@
 require 'pry'
 class PostsController < ApplicationController
+	include Admin::DashboardHelper
 	skip_before_filter  :verify_authenticity_token
+	before_action :verify_admin, only: [:new, :edit, :update, :create]
 	def show
-		p "*"*100
 		@articles = Article.order('created_at')
 	end
 
@@ -11,7 +12,6 @@ class PostsController < ApplicationController
 	end
 
 	def create
-		p "*"*100
 		@article = Article.create(post_params)
 		@article.tag(params[:tags])
 		redirect_to blog_path
@@ -23,7 +23,6 @@ class PostsController < ApplicationController
 	end
 
 	def update
-		p params
 		@article = Article.find(params[:id])
 		@article.update(post_params)
 		@article.save
@@ -38,5 +37,12 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:date, :title, :problem, :language, :runtime, :content, :code)
+  end
+
+
+  def verify_admin
+  	unless signed_in?
+  		redirect_to error_path
+  	end
   end
 end
