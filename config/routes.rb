@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get 'login' => 'admin/dashboard#login'
   get 'logout' => 'admin/dashboard#logout'
 
+  get 'error' => 'application#error'
+
   resources :posts
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
