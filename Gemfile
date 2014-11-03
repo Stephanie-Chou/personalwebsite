@@ -45,6 +45,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'factory_girl_rails'
   gem "capybara"
+  gem 'database_cleaner', '~> 1.2.0'
 end
 # Use unicorn as the app server
 # gem 'unicorn'
