@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<head>
+  <style>
+    .grid_row{
+      height: 22px;
+      width: 1000px;
+      padding: 0px;
+    }
+
+    .cell{
+      background-color: red;
+
+      display: inline-block;
+      border: solid 1px black;
+    }
+
+  </style>
+</head>
+<html>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class = "col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+        <div class="page-header">
+          <h1 class = "playful">PaintFill: DFS</h1>
+          <br/>
+        </div>
+        <p>This is 100% Javascript. No Libraries.<p>
+        <div id = "grid" class = "grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type = "text/javascript">
+          function listNode(val){
+            this.next = null;
+            this.value = val;
+          }
+
+
+
+          function app(){
+            this.grid = new grid(10,10);
+            var red = new listNode('red');
+            var blue = new listNode('blue');
+            var green = new listNode('green');
+            var purple = new listNode('purple');
+            var yellow = new listNode('yellow');
+
+            red.next = blue;
+            blue.next = green;
+            green.next = purple;
+            purple.next = yellow;
+            yellow.next = red;
+
+            this.curr_color = red;
+            this.next_color = blue;
+
+            this.run = function(){
+              console.log("running");
+              this.grid.generateGrid();
+              this.renderGrid();
+              window.setInterval(function () {
+                this.paintFill(this.grid.grid[0][0], this.curr_color.value, this.next_color.value);
+
+                this.curr_color = this.next_color;
+                this.next_color = this.next_color.next;
+                }.bind(this), 3000);
+            }
+
+            this.renderGrid = function(){
+              var visualGrid = document.getElementById('grid');
+
+              visualGrid.innerHTML = "";
+
+              var grid = this.grid;
+              var node;
+              var row;
+              var cell;
+
+
+              for(var i = 0; i < grid.w; i++){
+                row = document.createElement("div");
+                row.className = row.className + " grid_row";
+
+                for(var j = 0; j <grid.h; j++){
+                  cell = document.createElement("div");
+                  cell.className = cell.className + " cell";
+                  cell.style["height"] = grid.grid[i][j].h+"px";
+                  cell.style["width"] = grid.grid[i][j].w+"px";
+                  cell.style["background-color"] = grid.grid[i][j].color;
+                  row.appendChild(cell);
+                }
+                visualGrid.appendChild(row);
+              }
+            }
+
+            this.paintFill = function(cell, curr_color, new_color){
+              if (curr_color == new_color) return;
+              if (cell.color != curr_color) return;
+              cell.color = new_color;
+
+              setTimeout(function(){
+                this.renderGrid();
+                var neighbors = cell.neighbors(this.grid);
+                // console.log(neighbors);
+                  for(var n = 0; n < neighbors.length; n++){
+                    this.paintFill(neighbors[n], curr_color, new_color)
+                  }
+                }.bind(this), 500);
+              }
+          };
+
+
+          function cell(x,y){
+            this.x_coord = x;
+            this.y_coord = y;
+            this.h = 20;
+            this.w = 20;
+            this.visited = false;
+            this.color = 'red';
+
+          };
+
+          cell.prototype.neighbors = function(grid) {
+            // find neighbors [w e s n] of the cell
+            var n = [];
+            x = this.x_coord;
+            y = this.y_coord;
+            if(x-1 > 0){
+              n.push(grid.grid[x-1][y]);
+            }
+            if(x+1 < grid.w){
+              n.push(grid.grid[x+1][y]);
+            }
+            if(y-1 > 0){
+              n.push(grid.grid[x][y-1]);
+            }
+            if(y+1 < grid.h){
+              n.push(grid.grid[x][y+1]);
+            }
+            return n;
+          };
+
+
+          function grid(h,w){
+            this.h = h;
+            this.w = w;
+            this.grid = [];
+          };
+
+          grid.prototype.generateGrid = function() {
+
+            var row;
+            var c;
+
+            for (var i = 0; i < this.w; i ++){
+              row = [];
+              for(var j = 0; j < this.h; j ++){
+                c = new cell(i, j);
+                row.push(c);
+              }
+
+              this.grid.push(row);
+            }
+          };
+          var app = new app();
+          app.run();
+  </script>
+</body>
+</html>

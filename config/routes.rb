@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   get 'error' => 'application#error'
 
+  get 'paintfill' => 'application#paintfill'
+
   resources :posts
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
